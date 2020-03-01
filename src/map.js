@@ -1,3 +1,6 @@
+require('./style.css');
+const template = require('./popup.hbs');
+
 function initMap() { 
     let pos = { lat: 46.978566, lng: 18.050221 };
     
@@ -8,15 +11,28 @@ function initMap() {
 
     let map = new google.maps.Map(document.querySelector('.map'), opt);
 
-    let marker = new google.maps.Marker({
-        position: pos,
-        map: map,
-        title: 'Hello World!'
+    map.addListener('click', e => {
+        // console.log(e.latLng.lat(), e.latLng.lng(), e.latLng.toJSON());
+        addNewPopup(e.latLng.toJSON());
+ 
     });
 
-    let info = new google.maps.InfoWindow({
-        content: '<h3>это метсто H3</h3><p>Простое описание места</p>'
-    });
+    function addNewPopup(coords) {
+        console.log(coords);
+        let info = new google.maps.InfoWindow({
+            position: coords,
+            map: map,
+            content: template()
+        });
+
+        console.log(info);
+    }
+    
+    // let marker = new google.maps.Marker({
+    //     position: pos,
+    //     map: map,
+    //     title: 'Hello World!'
+    // });
 
     marker.addListener('click', function () {
         info.open(map, marker);
@@ -25,13 +41,3 @@ function initMap() {
 }
 
 initMap();
-
-/*
- homeworkContainer - это контейнер для всех ваших домашних заданий
- Если вы создаете новые html-элементы и добавляете их на страницу, то добавляйте их только в этот контейнер
-
- Пример:
-   const newDiv = document.createElement('div');
-   homeworkContainer.appendChild(newDiv);
- */
-
