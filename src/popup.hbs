@@ -1,21 +1,23 @@
 <div class="popup">
     <div class="popup__header">
-        <i class="fas fa-map-marker-alt popup__geo"></i> $[properties.address]
+        <i class="fas fa-map-marker-alt popup__geo"></i> {{address}}
         <i class="fas fa-times popup__close"></i>
     </div>
     <div class="popup__reviews">
         <div class="popup__reviews-container">
             <ul class="popup__reviews-list">
-                {% for item in properties.reviews %}
+
+                {{#each reviews}}
+
                 <li class="popup__reviews-item">
                     <div class="popup__review-header">
-                        <div class="popup__review-name">$[item.name]</div>
+                        <div class="popup__review-name">{{ name }}</div>
                     </div>
                     <div class="popup__review-text">
-                        $[item.text]
+                        {{ text }}
                     </div>
                 </li>
-                {% endfor %}
+                {{/each}}
             </ul>
         </div>
     </div>
@@ -29,7 +31,7 @@
                     id="review"></textarea>
             </div>
             <div class="popup__form-row">
-                <button class="add-review">Добавить</button>
+                <button onclick="btnClick()" class="add-review">Добавить</button>
             </div>
         </form>
     </div>
