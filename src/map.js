@@ -46,19 +46,25 @@ let map,
         LatLng: [{
             lat: 47.06937367885084,
             lng: 18.050221000000004
-        }]
+        }],
+        reviews: [
+            {
+                name: 'имя 1',
+                text: 'отзыв 1'
+            },
+            {
+                name: 'имя 1',
+                text: 'отзыв 1'
+            }
+        ]
     }
     ];
 
-// так вроде лучше загружается
-window.onload = function () {
+// так лучше загружается
+window.onload = () => {
     initMap();
     addMarkersOnMap();
 };
-// markers.push(marker);
-
-// Ждем полной загрузки страницы, после этого запускаем initMap()
-// map.addDomListener(window, 'load', initMap);
 
 function initMap() { 
 
@@ -80,45 +86,80 @@ function initMap() {
 
     // let btn = document.querySelector('BODY');
     
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('add-review')) {
-            event.preventDefault();
-            console.log('Добавить');
-        } 
 
-    })
+
+    
 
     let info;
 
-    function createPlacemark(coords) {
+    async function createPlacemark(coords) {
+        let newMarkersOnMapObj = {
+            placeName: '',
+            LatLng: [],
+            reviews: []
+        };
 
         if (info) {
-            info.setPosition(coords); 
-            console.log('if info');
+            await info.setPosition(coords); 
+            console.log('if info', coords);
             // если не то создаем новый            
         } else {
-            info = new google.maps.InfoWindow({
+            info = await new google.maps.InfoWindow({
                 position: coords,
                 map: map,
-                content: template({ address: 'ok' }),
-                
+                content: template({ address: newMarkersOnMapObj.placeName }),
             })
-            console.log('else info');
+            console.log('else newMarkersOnMapObj.placeName', newMarkersOnMapObj.placeName);
+            newMarkersOnMapObj.LatLng = info.position;
+            
+            console.log('1 newMarkersOnMapObj.LatLng', newMarkersOnMapObj);
+            console.log('else info', coords);
             
         }
 
-        var geocoder = new google.maps.Geocoder();
+        
+           
+        let geocoder = new google.maps.Geocoder();
 
         geocoder.geocode({ latLng: coords }, function (results, status) {
             if (status == 'OK' && results.length > 0) {
-                var address = results[0].formatted_address;
-
-                console.log('geocoder', address);
+                let address = results[0].formatted_address;
+                newMarkersOnMapObj.placeName = address;
+                newMarkersOnMapObj.LatLng = coords;
+                console.log('2 newMarkersOnMapObj.placeName', newMarkersOnMapObj);
             } else {
-                console.log('Адрес не найден');
+                newMarkersOnMapObj.placeName = 'New Place';
+                newMarkersOnMapObj.LatLng = coords;
+                console.log('2 newMarkersOnMapObj.placeName', newMarkersOnMapObj);
             }
         });
+            
+    
+        
 
+        document.querySelector('.add-review').addEventListener('click', e => {
+            // if (e.target.classList.contains('add-review')) {
+            // markersOnMap.push(info);
+            // }
+            e.preventDefault();
+
+            console.log('Добавить');
+            let namePopup = document.querySelector('#review-name').value;
+            let textPopup = document.querySelector('#review-text').value;
+            
+            let reviewObj = {
+                name: namePopup,
+                text: textPopup
+            };
+        
+            // пушим в массив reviews
+            newMarkersOnMapObj.reviews.push(reviewObj)
+            console.log('3 newMarkersOnMapObj reviews', newMarkersOnMapObj);
+            
+
+            // markersOnMap.push(info);
+
+        })
     }
     
 }
@@ -133,8 +174,8 @@ function addMarkersOnMap() {
             reviews: markersOnMap[i].reviews
         });
 
-        console.log('reviews', markersOnMap[i].reviews);
-        console.log('markersOnMap', markersOnMap[i]);
+        // console.log('reviews', markersOnMap[i].reviews);
+        // console.log('markersOnMap', markersOnMap[i]);
 
         const marker = new google.maps.Marker({
             position: markersOnMap[i].LatLng[0],
