@@ -1,7 +1,7 @@
 <div class="popup">
     <div class="popup__header">
-        <i class="fas fa-map-marker-alt popup__geo"></i> {{address}}
-        <i class="fas fa-times popup__close"></i>
+        <i class="fas fa-map-marker-alt popup__geo"></i> {{ address }}
+        <i class="gm-ui-hover-effect popup__close"></i>
     </div>
     <div class="popup__reviews">
         <div class="popup__reviews-container">
@@ -27,8 +27,8 @@
                 <input type="text" placeholder="Ваше имя" id="review-name" class="popup__input" name="name">
             </div>
             <div class="popup__form-row">
-                <textarea name="review" placeholder="Поделитесь впечатлениями" class="popup__input popup__input_text"
-                    id="review-text"></textarea>
+                <textarea name="review" placeholder="Поделитесь впечатлениями" maxlength="200"
+                    class="popup__input popup__input_text" id="review-text"></textarea>
             </div>
             <div class="popup__form-row">
                 <button class="add-review">Добавить</button>

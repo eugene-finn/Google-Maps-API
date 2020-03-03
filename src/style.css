@@ -1,5 +1,69 @@
-* {
-  box-sizing: border-box; 
+.gm-style .gm-style-iw-c {
+    position: absolute;
+    box-sizing: border-box;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    transform: translate(-50%,-100%);
+    background-color: white;
+    border-radius: 10px;
+    padding: 0px;
+    box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+        min-height: 400px;
+}
+
+.gm-style .gm-style-iw-d {
+    box-sizing: border-box;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+/* close button */
+/* .gm-ui-hover-effect {
+display: block;
+
+    opacity: 1;
+   
+   
+   color: white;
+    top: 0px;
+   right: 35px !important;
+
+} */
+
+/* .gm-ui-hover-effect.popup__close:after {
+
+    display: block;
+height: 46px !important;
+width: 18px !important;
+content: "×";
+font: 30px normal  !important;
+color: white;
+
+
+} */
+
+/* .gm-ui-hover-effect.popup__close:hover:after {
+    background-color: white;
+    display: block;
+height: 46px !important;
+width: 18px !important;
+content: "×";
+font: 30px normal  !important;
+color: grey;
+
+
+} */
+button.gm-ui-hover-effect {
+    display: block;
+    top:8px !important;
+    right:8px !important;
+
+}
+
+.gm-ui-hover-effect > img {
+/* display: none !important; */
+display: block;
+
 }
 
     ul,
@@ -22,7 +86,7 @@
         background-color: #ff8663;
         padding: 15px;
         color: #ffffff;
-        font-size: 12px;
+        font-size: 14px;
         border-radius: 5px 5px 0 0;
         position: relative;
     }
@@ -34,16 +98,16 @@
 
     .popup__close {
         position: absolute;
-        right: 10px;
-        top: 8px;
-        font-size: 18px;
         cursor: pointer;
-        padding: 5px;
+       
     }
 
     .popup__reviews {
-        padding: 15px 15px 0 15px;
-        margin-bottom: 15px;
+        /* padding: 15px 15px 0 15px; */
+        padding: 15px 0;  
+        margin-bottom: 5px;
+        overflow-y: scroll;
+        font-size: 14px;
     }
 
     .popup__reviews::after {
@@ -55,10 +119,13 @@
     }
 
     .popup__reviews-container {
-        height: 110px;
+        height: 90px; /* 110px */
         overflow-x: hidden;
         overflow-y: scroll;
-        margin-bottom: 25px;
+        margin-bottom: 15px;
+        margin-right: 16px;
+        padding: 0 15px;
+
     }
 
     .popup__reviews-list {
@@ -74,7 +141,7 @@
     .popup__review-name {
         margin-right: 10px;
         color: #4f4f4f;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 500;
     }
 
@@ -95,18 +162,18 @@
     }
 
     .popup__review-header {
-        margin-bottom: 13px;
+        margin-bottom: 5px;
     }
 
     .popup__review-text {
         color: #4f4f4f;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 400;
         line-height: 22px;
     }
 
     .popup__reviews-item {
-        margin-bottom: 25px;
+        margin-bottom: 15px;
     }
 
     .popup__reviews-item:last-child {
@@ -114,7 +181,8 @@
     }
 
     .popup__form {
-        padding: 0 15px 15px 15px;
+        padding: 0 15px;
+        margin-right: 17px;
     }
 
     .popup__form-title {
@@ -142,18 +210,18 @@
     .popup__input {
         width: 100%;
         height: 32px;
-        border-radius: 5px;
+        border-radius: 10px;
         outline: none;
         border: 1px solid #c4c4c4;
         color: #9f9f9f;
         font-size: 15px;
         font-weight: 300;
         line-height: 22px;
-        padding: 10px 15px;
+        padding: 5px 15px;
     }
 
     .popup__input_text {
-        height: 129px;
+        height: 88px;
     }
 
     .cluster__header {
