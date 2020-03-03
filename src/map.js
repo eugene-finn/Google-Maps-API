@@ -2,6 +2,11 @@ require('./style.css');
 const template = require('./popup.hbs');
 
 let map;
+let newMarkersOnMapObj = {
+  placeName: '',
+  LatLng: [],
+  reviews: []
+};
 let markersOnMap = [{
     placeName: 'Dot 1',
     LatLng: [{
@@ -39,7 +44,7 @@ window.onload = () => {
     addMarkersOnMap();
 };
 
-function initMap() {
+ function initMap() {
 
   let centerCoords = { lat: 46.978566, lng: 18.050221 };
 
@@ -57,27 +62,14 @@ function initMap() {
     createPlacemark(coords);
   });
 
-  // let btn = document.querySelector('BODY');
-
-
-
-
-
   let info;
 
   async function createPlacemark(coords) {
-    let newMarkersOnMapObj = {
-      placeName: '',
-      LatLng: [],
-      reviews: []
-    };
-
-
 
     if (info) {
       await info.setPosition(coords);
       console.log('if info', coords);
-      // если не то создаем новый            
+      // иначе создаем с новыми координатами
     } else {
       info = await new google.maps.InfoWindow({
         position: coords,
@@ -86,57 +78,67 @@ function initMap() {
         maxWidth: 379
       })
       console.log('else info', info);
-      // newMarkersOnMapObj.LatLng = info.position;
+    
     }
 
-    let geocoder = new google.maps.Geocoder();
+    let geocoder = await new google.maps.Geocoder();
 
     geocoder.geocode({ latLng: coords }, function (results, status) {
       if (status == 'OK' && results.length > 0) {
         let address = results[0].formatted_address;
-        // newMarkersOnMapObj = { ...newMarkersOnMapObj, placeName: address, LatLng: coords }  
+        // записываем название места newMarkersOnMapObj = { ...newMarkersOnMapObj, placeName: address, LatLng: coords }
         newMarkersOnMapObj.placeName = address;
-        newMarkersOnMapObj.LatLng = coords;
+        newMarkersOnMapObj.LatLng.push(coords);
         info.setContent(template({ address: newMarkersOnMapObj.placeName }));
-        console.log('2 newMarkersOnMapObj.placeName', newMarkersOnMapObj);
+        
 
       } else {
+        // записываем название места и координаты
         newMarkersOnMapObj.placeName = 'New Place';
-        newMarkersOnMapObj.LatLng = coords;
-        console.log('2 newMarkersOnMapObj.placeName', newMarkersOnMapObj);
+        newMarkersOnMapObj.LatLng.push(coords);
       }
 
     });
-
-
-
-
-    document.querySelector('.add-review').addEventListener('click', e => {
-      if (e.target.classList.contains('add-review')) {
-        // markersOnMap.push(info);
-      }
-      e.preventDefault();
-
-      console.log('Добавить');
-      let namePopup = document.querySelector('#review-name').value;
-      let textPopup = document.querySelector('#review-text').value;
-
-      let reviewObj = {
-        name: namePopup,
-        text: textPopup
-      };
-
-      // пушим в массив reviews
-      newMarkersOnMapObj.reviews.push(reviewObj)
-      console.log('3 newMarkersOnMapObj reviews', newMarkersOnMapObj);
-
-
-      // markersOnMap.push(info);
-
-    })
+    // console.log('info', querySelector('add-review'));    
   }
 
 }
+
+
+document.body.addEventListener('click', e => {
+  e.preventDefault();
+  if (e.target.classList.contains('add-review')) {
+    let namePopup = document.querySelector('#review-name').value;
+    let textPopup = document.querySelector('#review-text').value;
+  
+    let reviewObj = {
+      ...reviewObj,
+      name: namePopup,
+      text: textPopup
+    }
+
+    newMarkersOnMapObj.reviews.push(reviewObj)
+    console.log(newMarkersOnMapObj);
+    
+    // new google.maps.Marker({
+    //   position: markersOnMap[i].LatLng[0],
+    //   map: map,
+    //   title: markersOnMap[i].address
+    // });
+
+    // infoWindow.close();
+    markersOnMap.push(newMarkersOnMapObj);
+
+    console.log(markersOnMap);
+  }
+  
+  // // пушим в массив reviews
+  
+  // console.log('3 newMarkersOnMapObj reviews', newMarkersOnMapObj);
+  addMarkersOnMap();
+  
+})
+
 
 function addMarkersOnMap() {
 
@@ -144,12 +146,9 @@ function addMarkersOnMap() {
 
     // let contentString = '<div id="content"><h1>' + markersOnMap[i].placeName + '</h1><p>Обзор точки</p></div>';
     let contentString = template({
-      address: 'Эадрес',
+      address: markersOnMap[i].placeName,
       reviews: markersOnMap[i].reviews
     });
-
-    // console.log('reviews', markersOnMap[i].reviews);
-    // console.log('markersOnMap', markersOnMap[i]);
 
     const marker = new google.maps.Marker({
       position: markersOnMap[i].LatLng[0],
@@ -160,7 +159,6 @@ function addMarkersOnMap() {
     const infowindow = new google.maps.InfoWindow({
       content: contentString,
       maxWidth: 379
-
     });
 
     marker.addListener('click', function () {
