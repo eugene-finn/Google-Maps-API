@@ -1,0 +1,38 @@
+<div class="popup">
+    <div class="popup__header">
+        <i class="fas fa-map-marker-alt popup__geo"></i> {{ address }}
+        <i class="gm-ui-hover-effect popup__close"></i>
+    </div>
+    <div class="popup__reviews">
+        <div class="popup__reviews-container">
+            <ul class="popup__reviews-list">
+
+                {{#each reviews}}
+
+                <li class="popup__reviews-item">
+                    <div class="popup__review-header">
+                        <div class="popup__review-name">{{ name }}</div>
+                    </div>
+                    <div class="popup__review-text">
+                        {{ text }}
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="popup__form">
+        <form action="" class="popup__form-container">
+            <div class="popup__form-row">
+                <input type="text" placeholder="Ваше имя" id="review-name" class="popup__input" name="name">
+            </div>
+            <div class="popup__form-row">
+                <textarea name="review" placeholder="Поделитесь впечатлениями" maxlength="200"
+                    class="popup__input popup__input_text" id="review-text"></textarea>
+            </div>
+            <div class="popup__form-row">
+                <button class="add-review">Добавить</button>
+            </div>
+        </form>
+    </div>
+</div>

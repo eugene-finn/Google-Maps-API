@@ -1,0 +1,246 @@
+.gm-style .gm-style-iw-c {
+    position: absolute;
+    box-sizing: border-box;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    transform: translate(-50%,-100%);
+    background-color: white;
+    border-radius: 10px;
+    padding: 0px;
+    box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+        min-height: 400px;
+}
+
+.gm-style .gm-style-iw-d {
+    box-sizing: border-box;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+/* close button */
+/* .gm-ui-hover-effect {
+display: block;
+
+    opacity: 1;
+   
+   
+   color: white;
+    top: 0px;
+   right: 35px !important;
+
+} */
+
+/* .gm-ui-hover-effect.popup__close:after {
+
+    display: block;
+height: 46px !important;
+width: 18px !important;
+content: "×";
+font: 30px normal  !important;
+color: white;
+
+
+} */
+
+/* .gm-ui-hover-effect.popup__close:hover:after {
+    background-color: white;
+    display: block;
+height: 46px !important;
+width: 18px !important;
+content: "×";
+font: 30px normal  !important;
+color: grey;
+
+
+} */
+button.gm-ui-hover-effect {
+    display: block;
+    top:8px !important;
+    right:8px !important;
+
+}
+
+.gm-ui-hover-effect > img {
+/* display: none !important; */
+display: block;
+
+}
+
+    ul,
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .popup {
+        background-color: #ffffff;
+        border-radius: 5px;
+        width: 379px;
+    }
+
+    .popup__header {
+        background-color: #ff8663;
+        padding: 15px;
+        color: #ffffff;
+        font-size: 14px;
+        border-radius: 5px 5px 0 0;
+        position: relative;
+    }
+
+    .popup__geo {
+        font-size: 14px;
+        margin-right: 7px;
+    }
+
+    .popup__close {
+        position: absolute;
+        cursor: pointer;
+       
+    }
+
+    .popup__reviews {
+        /* padding: 15px 15px 0 15px; */
+        padding: 15px 0;  
+        margin-bottom: 5px;
+        overflow-y: scroll;
+        font-size: 14px;
+    }
+
+    .popup__reviews::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #f0f0ff;
+    }
+
+    .popup__reviews-container {
+        height: 90px; /* 110px */
+        overflow-x: hidden;
+        overflow-y: scroll;
+        margin-bottom: 15px;
+        margin-right: 16px;
+        padding: 0 15px;
+
+    }
+
+    .popup__reviews-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .popup__review-header {
+        display: flex;
+        align-items: center;
+    }
+
+    .popup__review-name {
+        margin-right: 10px;
+        color: #4f4f4f;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .popup__review-pos {
+        margin-right: 10px;
+        font-size: 16px;
+    }
+
+    .popup__review-date {
+        font-size: 14px;
+    }
+
+    .popup__review-pos,
+    .popup__review-date {
+        opacity: 0.75;
+        color: #4f4f4f;
+        font-weight: 400;
+    }
+
+    .popup__review-header {
+        margin-bottom: 5px;
+    }
+
+    .popup__review-text {
+        color: #4f4f4f;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 22px;
+    }
+
+    .popup__reviews-item {
+        margin-bottom: 15px;
+    }
+
+    .popup__reviews-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .popup__form {
+        padding: 0 15px;
+        margin-right: 17px;
+    }
+
+    .popup__form-title {
+        color: #ff8663;
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+    .popup__form-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .popup__form-row {
+        display: flex;
+        margin-bottom: 16px;
+    }
+
+    .popup__form-row:last-child {
+        margin-bottom: 0;
+        justify-content: flex-end;
+    }
+
+    .popup__input {
+        width: 100%;
+        height: 32px;
+        border-radius: 10px;
+        outline: none;
+        border: 1px solid #c4c4c4;
+        color: #9f9f9f;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 22px;
+        padding: 5px 15px;
+    }
+
+    .popup__input_text {
+        height: 88px;
+    }
+
+    .cluster__header {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .cluster__link {
+        margin-bottom: 10px;
+    }
+
+    .cluster__review {
+        font-size: 14px;
+    }
+
+    .search_by_address {
+        font-size: 14px;
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+    }
